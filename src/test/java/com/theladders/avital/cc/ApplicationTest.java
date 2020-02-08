@@ -14,7 +14,7 @@ public class ApplicationTest {
     Application application;
 
     private ArrayList<String> createNewJob(String jobName, String jobType, String employerName, String applicationTime) {
-        return new ArrayList<>() {{
+        return new ArrayList<String>() {{
             add(jobName);
             add(jobType);
             add(applicationTime);
@@ -23,7 +23,7 @@ public class ApplicationTest {
     }
 
     private ArrayList<String> createNewJob(final String jobName, final String jobType) {
-        return new ArrayList<>() {{
+        return new ArrayList<String>() {{
             add(jobName);
             add(jobType);
         }};
@@ -41,7 +41,7 @@ public class ApplicationTest {
         String jobName = "高级前端开发";
         application.execute("publish", employerName, jobName, "JReq", null, null, null);
         List<List<String>> jobs = application.getJobs(employerName, "published");
-        List<List<String>> expected = new ArrayList<>() {{
+        List<List<String>> expected = new ArrayList<List<String>>() {{
             add(createNewJob("高级前端开发", "JReq"));
         }};
 
@@ -57,7 +57,7 @@ public class ApplicationTest {
         application.execute("publish", employerAlibaba, seniorJavaDevJob, "JReq", null, null, null);
         application.execute("publish", employerTencent, juniorJavaDevJob, "JReq", null, null, null);
         List<List<String>> jobs = application.getJobs(employerAlibaba, "published");
-        List<List<String>> expected = new ArrayList<>() {{
+        List<List<String>> expected = new ArrayList<List<String>>() {{
             add(createNewJob("高级Java开发", "JReq"));
         }};
 
@@ -71,7 +71,7 @@ public class ApplicationTest {
 
         application.execute("publish", employerAlibaba, seniorJavaDevJob, "ATS", null, null, null);
         List<List<String>> jobs = application.getJobs(employerAlibaba, "published");
-        List<List<String>> expected = new ArrayList<>() {{
+        List<List<String>> expected = new ArrayList<List<String>>() {{
             add(createNewJob("高级Java开发", "ATS"));
         }};
 
@@ -94,7 +94,7 @@ public class ApplicationTest {
         application.execute("publish", employerAlibaba, jobName, "JReq", null, null, null);
         application.execute("save", jobSeekerName, jobName, "JReq", null, null, null);
         List<List<String>> savedJobs = application.getJobs(jobSeekerName, "published");
-        List<List<String>> expected = new ArrayList<>() {{
+        List<List<String>> expected = new ArrayList<List<String>>() {{
             add(createNewJob("高级Java开发", "JReq"));
         }};
 
@@ -113,7 +113,7 @@ public class ApplicationTest {
         application.execute("apply", employerAlibaba, juniorJavaDevJob, "ATS", jobSeekerName, null, LocalDate.parse("2020-01-01"));
         application.execute("apply", employerAlibaba, seniorJavaDevJob, "ATS", jobSeekerName, null, LocalDate.parse("2020-01-01"));
         List<List<String>> appliedJobs = application.getJobs(jobSeekerName, "applied");
-        List<List<String>> expected = new ArrayList<>() {{
+        List<List<String>> expected = new ArrayList<List<String>>() {{
             add(createNewJob("Java开发", "ATS", "Alibaba", "2020-01-01"));
             add(createNewJob("高级Java开发", "ATS", "Alibaba", "2020-01-01"));
         }};
@@ -154,7 +154,7 @@ public class ApplicationTest {
         application.execute("apply", employerAlibaba, seniorJavaDevJob, "ATS", jobSeekerLam, null, LocalDate.now());
         List<String> applicants = application.findApplicants(seniorJavaDevJob, employerAlibaba);
 
-        List<String> expected = new ArrayList<>() {{
+        List<String> expected = new ArrayList<String>() {{
             add("Lam");
             add("Jacky");
         }};
@@ -174,7 +174,7 @@ public class ApplicationTest {
         application.execute("apply", employerAlibaba, seniorJavaDevJob, "ATS", jobSeekerHo, null, LocalDate.parse("1999-12-20"));
         List<String> applicants = application.findApplicants(null, employerAlibaba, LocalDate.parse("1999-12-20"));
 
-        List<String> expected = new ArrayList<>() {{
+        List<String> expected = new ArrayList<String>() {{
             add("Ho");
         }};
 
@@ -193,7 +193,7 @@ public class ApplicationTest {
         application.execute("apply", employerAlibaba, seniorJavaDevJob, "ATS", jobSeekerHo, null, LocalDate.parse("1999-12-20"));
         List<String> applicants = application.findApplicants(null, employerAlibaba, null, LocalDate.parse("1999-01-01"));
 
-        List<String> expected = new ArrayList<>() {{
+        List<String> expected = new ArrayList<String>() {{
             add("Jacky");
         }};
 
@@ -212,7 +212,7 @@ public class ApplicationTest {
         application.execute("apply", employerAlibaba, seniorJavaDevJob, "ATS", jobSeekerHo, null, LocalDate.parse("1999-12-20"));
         List<String> applicants = application.findApplicants(null, employerAlibaba, LocalDate.parse("1997-07-01"), LocalDate.parse("1999-12-20"));
 
-        List<String> expected = new ArrayList<>() {{
+        List<String> expected = new ArrayList<String>() {{
             add("Ho");
             add("Jacky");
         }};
@@ -237,7 +237,7 @@ public class ApplicationTest {
 
         List<String> applicants = application.findApplicants(seniorJavaDevJob, employerAlibaba, LocalDate.parse("1999-12-20"));
 
-        List<String> expected = new ArrayList<>() {{
+        List<String> expected = new ArrayList<String>() {{
             add("Jacky");
         }};
 
@@ -260,7 +260,7 @@ public class ApplicationTest {
 
         List<String> applicants = application.findApplicants(juniorJavaDevJob, employerAlibaba, null, LocalDate.parse("1999-01-01"));
 
-        List<String> expected = new ArrayList<>() {{
+        List<String> expected = new ArrayList<String>() {{
             add("Jacky");
         }};
 
@@ -286,7 +286,7 @@ public class ApplicationTest {
 
         List<String> applicants = application.findApplicants(juniorJavaDevJob, employerAlibaba, LocalDate.parse("1997-01-01"), LocalDate.parse("1999-01-01"));
 
-        List<String> expected = new ArrayList<>() {{
+        List<String> expected = new ArrayList<String>() {{
             add("Ho");
             add("Jacky");
         }};

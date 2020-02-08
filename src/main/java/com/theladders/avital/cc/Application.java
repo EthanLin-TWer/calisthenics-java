@@ -20,7 +20,7 @@ public class Application {
 
             List<List<String>> alreadyPublished = jobs.getOrDefault(employerName, new ArrayList<>());
 
-            alreadyPublished.add(new ArrayList<>() {{
+            alreadyPublished.add(new ArrayList<String>() {{
                 add(jobName);
                 add(jobType);
             }});
@@ -28,14 +28,14 @@ public class Application {
         } else if (command == "save") {
             List<List<String>> saved = jobs.getOrDefault(employerName, new ArrayList<>());
 
-            saved.add(new ArrayList<>() {{
+            saved.add(new ArrayList<String>() {{
                 add(jobName);
                 add(jobType);
             }});
             jobs.put(employerName, saved);
         } else if (command == "apply") {
             if (jobType.equals("JReq") && resumeApplicantName == null) {
-                List<String> failedApplication = new ArrayList<>() {{
+                List<String> failedApplication = new ArrayList<String>() {{
                     add(jobName);
                     add(jobType);
                     add(applicationTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
@@ -50,7 +50,7 @@ public class Application {
             }
             List<List<String>> saved = this.applied.getOrDefault(jobSeekerName, new ArrayList<>());
 
-            saved.add(new ArrayList<>() {{
+            saved.add(new ArrayList<String>() {{
                 add(jobName);
                 add(jobType);
                 add(applicationTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
@@ -78,8 +78,7 @@ public class Application {
 
     public List<String> findApplicants(String jobName, String employerName, LocalDate from, LocalDate to) {
         if (from == null && to == null) {
-            List<String> result = new ArrayList<>() {
-            };
+            List<String> result = new ArrayList<String>() {};
             Iterator<Entry<String, List<List<String>>>> iterator = this.applied.entrySet().iterator();
             while (iterator.hasNext()) {
                 Entry<String, List<List<String>>> set = iterator.next();
@@ -92,8 +91,7 @@ public class Application {
             }
             return result;
         } else if (jobName == null && to == null) {
-            List<String> result = new ArrayList<>() {
-            };
+            List<String> result = new ArrayList<String>() {};
             Iterator<Entry<String, List<List<String>>>> iterator = this.applied.entrySet().iterator();
             while (iterator.hasNext()) {
                 Entry<String, List<List<String>>> set = iterator.next();
@@ -107,8 +105,7 @@ public class Application {
             }
             return result;
         } else if (jobName == null && from == null) {
-            List<String> result = new ArrayList<>() {
-            };
+            List<String> result = new ArrayList<String>() {};
             Iterator<Entry<String, List<List<String>>>> iterator = this.applied.entrySet().iterator();
             while (iterator.hasNext()) {
                 Entry<String, List<List<String>>> set = iterator.next();
@@ -123,8 +120,7 @@ public class Application {
             return result;
 
         } else if (jobName == null) {
-            List<String> result = new ArrayList<>() {
-            };
+            List<String> result = new ArrayList<String>() {};
             Iterator<Entry<String, List<List<String>>>> iterator = this.applied.entrySet().iterator();
             while (iterator.hasNext()) {
                 Entry<String, List<List<String>>> set = iterator.next();
@@ -138,8 +134,7 @@ public class Application {
             return result;
 
         } else if (to != null) {
-            List<String> result = new ArrayList<>() {
-            };
+            List<String> result = new ArrayList<String>() {};
             Iterator<Entry<String, List<List<String>>>> iterator = this.applied.entrySet().iterator();
             while (iterator.hasNext()) {
                 Entry<String, List<List<String>>> set = iterator.next();
@@ -152,8 +147,7 @@ public class Application {
             }
             return result;
         } else {
-            List<String> result = new ArrayList<>() {
-            };
+            List<String> result = new ArrayList<String>() {};
             Iterator<Entry<String, List<List<String>>>> iterator = this.applied.entrySet().iterator();
             while (iterator.hasNext()) {
                 Entry<String, List<List<String>>> set = iterator.next();
